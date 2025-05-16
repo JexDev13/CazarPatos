@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CazarPatos</string>
+    <string name="login">Login</string>
+    <string name="textoBienvenida">Bienvenido a mi aplicación</string>
 </resources>
