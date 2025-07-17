@@ -24,6 +24,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var textViewTime: TextView
     private lateinit var imageViewDuck: ImageView
     private lateinit var soundPool: SoundPool
+    private lateinit var fileManager: FileManager
+    private lateinit var externalFileManager: FileHandler
+
+
     // Manejador para retrasar la restauración de la imagen original
     private val handler = Handler(Looper.getMainLooper())
     private var counter = 0
@@ -47,6 +51,9 @@ class MainActivity : AppCompatActivity() {
         textViewCounter = findViewById(R.id.textViewCounter)
         textViewTime = findViewById(R.id.textViewTime)
         imageViewDuck = findViewById(R.id.imageViewDuck)
+        fileManager = FileManager(this)
+        externalFileManager = FileExternalManager(this)
+
 
         //Obtener el usuario de pantalla login
         val extras = intent.extras ?: return
@@ -118,6 +125,11 @@ class MainActivity : AppCompatActivity() {
         override fun onFinish() {
             textViewTime.setText("0s")
             gameOver = true
+
+            val usuario = textViewUser.text.toString()
+            fileManager.SaveInformation(usuario to counter.toString())
+            externalFileManager.SaveInformation(usuario to counter.toString())
+
             showGameOverDialog()
         }
     }
