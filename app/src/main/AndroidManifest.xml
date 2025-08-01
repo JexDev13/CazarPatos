@@ -24,10 +24,12 @@
         </activity>
         <activity
             android:name=".RankingActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false">
         </activity>
         <activity
             android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
             android:exported="false"></activity>
     </application>
 </manifest>

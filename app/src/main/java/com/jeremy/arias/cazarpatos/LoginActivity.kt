@@ -122,6 +122,18 @@ class LoginActivity : AppCompatActivity() {
         manejadorArchivo.SaveInformation(listadoAGrabar)
     }
 
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        if(currentUser != null){
+            //val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(EXTRA_LOGIN, currentUser.email)
+            startActivity(intent)
+        }
+            //reload();
+    }
+
     override fun onDestroy() {
         mediaPlayer.release()
         super.onDestroy()
