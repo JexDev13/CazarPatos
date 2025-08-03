@@ -21,4 +21,8 @@
     <string name="text_play_online">Play Online</string>
     <string name="text_delete">Delete data</string>
     <string name="text_close">Close</string>
+    <string name="text_new_user_new">Register new user</string>
+    <string name="confirm_password">Repeat password</string>
+    <string name="back_login">Back to login</string>
+    <string name="error_password_repeat">The passwords are not the same</string>
 </resources>

@@ -66,14 +66,18 @@ class LoginActivity : AppCompatActivity() {
             //finish()
             AutenticarUsuario(email, clave)
         }
-        buttonNewUser.setOnClickListener{
-            val email = editTextEmail.text.toString()
+        buttonNewUser.setOnClickListener {
+            /*val email = editTextEmail.text.toString()
             val clave = editTextPassword.text.toString()
             //Validaciones de datos requeridos y formatos
             if(!validateRequiredData())
                 return@setOnClickListener
 
-            SignUpNewUser(email, clave)
+            SignUpNewUser(email, clave)*/
+
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
 
         }
         mediaPlayer=MediaPlayer.create(this, R.raw.title_screen)
@@ -122,16 +126,16 @@ class LoginActivity : AppCompatActivity() {
         manejadorArchivo.SaveInformation(listadoAGrabar)
     }
 
-    public override fun onStart() {
+    override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if(currentUser != null){
-            //val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             intent.putExtra(EXTRA_LOGIN, currentUser.email)
+            Log.d(EXTRA_LOGIN, "persistentSession: " + currentUser.email)
             startActivity(intent)
+            finish()
         }
-            //reload();
     }
 
     override fun onDestroy() {
@@ -139,12 +143,13 @@ class LoginActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
+
+
     fun AutenticarUsuario(email:String, password:String){
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d(EXTRA_LOGIN, "signInWithEmail:success")
-                    //Si pasa validación de datos requeridos, ir a pantalla principal
                     val intencion = Intent(this, MainActivity::class.java)
                     intencion.putExtra(EXTRA_LOGIN, auth.currentUser!!.email)
                     startActivity(intencion)

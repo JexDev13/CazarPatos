@@ -21,6 +21,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -157,7 +158,7 @@ class MainActivity : AppCompatActivity() {
                 restartGame()
             }
             .setNegativeButton(getString(R.string.button_close)) { _, _ ->
-                // Dialog dismisses automatically
+                closeSesion()
             }
             .setCancelable(false)  // Prevents closing on outside click
         builder.create().show()
@@ -169,6 +170,13 @@ class MainActivity : AppCompatActivity() {
         textViewCounter.setText(counter.toString())
         moveDuckRandomly()
         initializeCountdown()
+    }
+
+    private fun closeSesion(){
+        FirebaseAuth.getInstance().signOut()
+        Log.d(EXTRA_LOGIN, "signOut:success")
+        onBackPressedDispatcher.onBackPressed()
+        finish()
     }
 
     fun jugarOnline(){
@@ -202,7 +210,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.action_salir -> {
-                finish()
+                closeSesion()
                 true
             }
             else -> super.onOptionsItemSelected(item)

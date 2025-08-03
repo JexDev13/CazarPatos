@@ -57,16 +57,15 @@ class RankingActivity : AppCompatActivity() {
         val db = Firebase.firestore
         db.collection("ranking")
             .orderBy("huntedDucks", Query.Direction.DESCENDING)
+            .limit(5)
             .get()
             .addOnSuccessListener { result ->
                 Log.d(EXTRA_LOGIN, "Success getting documents")
                 var jugadores = ArrayList<Player>()
                 for (document in result) {
                     val jugador = document.toObject(Player::class.java)
-                    //val jugador = document.toObject<Player>()
                     jugadores.add(jugador)
                 }
-                //Poblar en RecyclerView información usando mi adaptador
                 val recyclerViewRanking: RecyclerView = findViewById(R.id.recyclerViewRanking);
                 recyclerViewRanking.layoutManager = LinearLayoutManager(this);
                 recyclerViewRanking.adapter = RankingAdapter(jugadores);
@@ -78,6 +77,4 @@ class RankingActivity : AppCompatActivity() {
                     .show()
             }
     }
-
-
 }

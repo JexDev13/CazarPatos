@@ -27,16 +27,32 @@
         app:layout_constraintBottom_toBottomOf="@+id/textViewPosicion"
         app:layout_constraintStart_toEndOf="@+id/textViewPosicion"
         app:layout_constraintTop_toTopOf="@+id/textViewPosicion" />
+
     <TextView
         android:id="@+id/textViewUsuario"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:fontFamily="@font/press_start_2p"
-        android:textSize="12sp"
         android:text="@string/text_player"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewPatosCazados"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textViewPatosCazados"
-        app:layout_constraintTop_toTopOf="@+id/textViewPatosCazados" />
+        app:layout_constraintTop_toTopOf="@+id/textViewPatosCazados"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageViewMedal"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="100dp"
+        android:src="@drawable/empty"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewUsuario"
+        app:layout_constraintStart_toEndOf="@+id/textViewUsuario"
+        app:layout_constraintTop_toTopOf="@+id/textViewUsuario"
+        app:layout_constraintVertical_bias="0.0" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
